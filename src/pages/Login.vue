@@ -1,8 +1,15 @@
 <template>
   <div class="main">
-    <ShrCarousel>
-      <template slot="titulo"> ssdask </template>
-      <template slot="subtitulo"> ssdask </template>
+    <ShrCarousel
+      :qtdItens="3"
+      :titulo="textos.title"
+      :subtitulo="textos.subtitle"
+      :navegar-pelas-setas="navegarPelasSetas"
+      @change="slideAtual = $event"
+    >
+      <template v-slot:item-0>aaa</template>
+      <template v-slot:item-1>bbb</template>
+      <template v-slot:item-2>ccc</template>
     </ShrCarousel>
   </div>
 </template>
@@ -15,9 +22,33 @@ export default {
   },
   data() {
     return {
-      title: "teste",
-      subTitle: "titlo teste",
+      slideAtual: 0,
+      navegarPelasSetas: true,
     };
+  },
+  computed: {
+    textos() {
+      if (this.slideAtual === 0)
+        return {
+          title: "teste 0",
+          subtitle: "subtitulo 0",
+        };
+      else if (this.slideAtual === 1)
+        return {
+          title: "teste 1",
+          subtitle: "subtitulo 1",
+        };
+      else if (this.slideAtual === 2)
+        return {
+          title: "teste 2",
+          subtitle: "subtitulo 2",
+        };
+      else
+        return {
+          title: "",
+          subtitle: "",
+        };
+    },
   },
 };
 </script>
